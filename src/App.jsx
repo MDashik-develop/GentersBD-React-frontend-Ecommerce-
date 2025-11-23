@@ -12,6 +12,10 @@ import Category from './components/pages/product/Category'
 import Attribute from './components/pages/product/Attribute'
 import AttributeEdit from './components/pages/product/AttributeEdit'
 import ProductCreate from './components/pages/product/ProductCreate'
+import ProductEdit from './components/pages/product/ProductEdit'
+
+import { Sidebar, SidebarCollapse, SidebarItem, SidebarItemGroup, SidebarItems } from "flowbite-react";
+         import { HiArrowSmRight, HiChartPie, HiInbox, HiShoppingBag, HiTable, HiUser, HiTag, HiCog } from "react-icons/hi";
 
 
 function App() {
@@ -23,22 +27,10 @@ function App() {
   return (
     <>
       <ToastContainer position="top-right" autoClose={2000} />
-      <nav className="bg-white border-gray-200 dark:bg-gray-900">
-        <div className="flex flex-wrap justify-between items-center mx-auto max-w-7xl p-4">
-          <a href="https://flowbite.com" className="flex items-center space-x-3 rtl:space-x-reverse">
-            <img src="https://flowbite.com/docs/images/logo.svg" className="h-8" alt="Flowbite Logo" />
-            <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Flowbite</span>
-          </a>
-          <div className="flex items-center space-x-6 rtl:space-x-reverse">
-            <a href="tel:5541251234" className="text-sm  text-gray-500 dark:text-white hover:underline">(555) 412-1234</a>
-            <a href="#" className="text-sm  text-blue-600 dark:text-blue-500 hover:underline">Login</a>
-          </div>
-        </div>
-      </nav>
-      <nav className="bg-gray-50 dark:bg-gray-700">
+      {/* <nav className="bg-gray-50 dark:bg-gray-700">
         <div className="max-w-7xl px-4 py-3 mx-auto">
           <div className="flex items-center">
-            <ul className="flex flex-row font-medium mt-0 space-x-8 rtl:space-x-reverse text-sm">
+            <ul className="flex flex-row flex-wrap font-medium mt-0 space-x-8 gap-1.5 rtl:space-x-reverse text-sm">
               <li>
                 <Link to="/" className="text-gray-900 dark:text-white hover:underline" aria-current="page">Home</Link>
               </li>
@@ -69,10 +61,42 @@ function App() {
               <li>
                 <Link to="/product-create" className="text-gray-900 dark:text-white hover:underline">Product</Link>
               </li>
+              <li>
+                <Link to="/product-edit" className="text-gray-900 dark:text-white hover:underline">Product Edit</Link>
+              </li>
             </ul>
           </div>
         </div>
-      </nav>
+      </nav> */}
+      <div className="flex">
+      <Sidebar aria-label="Sidebar with multi-level dropdown example" className="flex-shrink-0">
+
+        <SidebarItems>
+          <SidebarItemGroup>
+            <SidebarItem href="#" icon={HiChartPie}>
+              Dashboard
+            </SidebarItem>
+            <SidebarCollapse icon={HiShoppingBag} label="Products">
+              <SidebarItem href="/product-create" icon={HiCog}>Products Create</SidebarItem>
+              <SidebarItem href="/product-edit/" icon={HiCog}>Products Edit</SidebarItem>
+              <SidebarItem href="#" icon={HiTable}>Products List</SidebarItem>
+            </SidebarCollapse>
+            <SidebarCollapse icon={HiTag} label="Brand">
+              <SidebarItem href="/brand" icon={HiTag}>Brand</SidebarItem>
+            </SidebarCollapse>
+            <SidebarCollapse icon={HiCog} label="Attribute">
+              <SidebarItem href="/attribute" icon={HiCog}>Attribute</SidebarItem>
+              <SidebarItem href="/attribute-edit/" icon={HiCog}>Attribute Edit</SidebarItem>
+            </SidebarCollapse>
+            <SidebarItem href="#" icon={HiInbox}>Inbox</SidebarItem>
+            <SidebarItem href="#" icon={HiUser}>Users</SidebarItem>
+            <SidebarItem href="#" icon={HiTable}>Products</SidebarItem>
+            <SidebarItem href="#" icon={HiArrowSmRight}>Sign In</SidebarItem>
+            <SidebarItem href="#" icon={HiTable}>Sign Up</SidebarItem>
+          </SidebarItemGroup>
+        </SidebarItems>
+        </Sidebar>
+        <main className="flex-grow p-4">
 
       <Routes>
         <Route path='/' element={<Home />} />
@@ -84,7 +108,12 @@ function App() {
         <Route path='/attribute' element={<Attribute />} />
         <Route path='/attribute-edit/:id' element={<AttributeEdit />} />
         <Route path='/product-create' element={<ProductCreate />} />
+        <Route path='/product-edit/:id' element={<ProductEdit />} />
       </Routes>
+
+        </main>
+
+        </div>
     </>
   )
 }
